@@ -17,18 +17,18 @@ const ClientLayout: React.FC<ClientLayoutProps> = async ({ children }) => {
   const ProductCategory = await find("ProductCategory");
   return (
     <div className="font-LexendDeca font-extralight">
-      <div className="relative z-50">
+      {/* <div className="relative z-50">
         <Header ProductCategory={ProductCategory} />
-      </div>
-      <div className="p:mt-[84px] d:mt-[145px] bg-gray-100">{children}</div>
+      </div> */}
+      {/* <div className="p:mt-[84px] d:mt-[145px] bg-gray-100">{children}</div> */}
       {/* <div className="relative z-50">
         <OnTop />
         <Hotline />
       </div>
       <TopFooter /> */}
-      <Partner Data={PartnerData} />
+      {/* <Partner Data={PartnerData} />
       <Footer Category={PostCategory} />
-      <Copyright />
+      <Copyright /> */}
     </div>
   );
 };
