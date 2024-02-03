@@ -23,8 +23,8 @@ const config: Config = {
         adminOrange: "#ffb301",
 
         //custom color
-        mainColor: "#f3c529",
-        mainColorHover: "#59431a",
+        mainColor: "#81d742",
+        mainColorHover: "#336b1d",
       },
     },
     keyframes: {

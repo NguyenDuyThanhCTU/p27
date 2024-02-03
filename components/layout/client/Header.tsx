@@ -38,30 +38,33 @@ const Header = ({ ProductCategory }: any) => {
       <div className="d:block p:hidden">
         <div className="bg-gray-100">
           <div className="w-[1200px] mx-auto flex justify-between h-[100px] items-center ">
-            <Link href={`/`}>
+            <div className="cursor-pointer" onClick={() => HandleNavigate("/")}>
               <Image
                 src={ContactData?.LogoWebsite}
                 alt="Logo"
                 width={100}
                 height={100}
               />
-            </Link>
+            </div>
             <Link href={`/`}>
-              <h2 className="text-mainColorHover text-[35px] uppercase font-bold">
+              <h2 className="text-mainColorHover text-[28px] uppercase font-bold text-center">
                 {SloganData?.Title}
               </h2>
 
-              <p className="text-mainColor text-[20px] italic font-normal">
+              <p className=" text-[20px] font-normal  text-center">
                 {SloganData?.Description}
               </p>
             </Link>
-            <div className="flex items-center gap-2">
-              <div className="text-[25px] text-blue-500 bg-white p-2 rounded-full cursor-pointer">
-                <FaFacebookSquare />
-              </div>
-              <div className="text-[25px] text-red-500 bg-white p-2 rounded-full cursor-pointer">
-                <FaGooglePlusG />
-              </div>
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => HandleNavigate(`tel:${ContactData?.Hotline}`)}
+            >
+              <Image
+                src="https://firebasestorage.googleapis.com/v0/b/taxihaiphong24h.appspot.com/o/%C4%91t.png?alt=media&token=9dd5900b-c173-4a20-b55b-b82f6e130229"
+                alt="Logo"
+                width={200}
+                height={200}
+              />
             </div>
           </div>
           <div className="bg-mainColorHover">
@@ -79,7 +82,7 @@ const Header = ({ ProductCategory }: any) => {
                           }`
                         )
                       }
-                      className="text-white flex items-center gap-2 text-[14px] uppercase font-bold py-3 px-5 border-l-[1px] cursor-pointer hover:bg-mainColor duration-300"
+                      className="text-white flex items-center gap-2 text-[14px] uppercase font-bold py-3 px-5  cursor-pointer hover:bg-mainColor duration-300"
                     >
                       <div className="w-full">{item.label}</div>
                       {item.value === "san-pham" && (
@@ -209,7 +212,7 @@ const Header = ({ ProductCategory }: any) => {
               <div>
                 <div className="flex flex-col  ">
                   {HeaderItems.map((item: any, idx: number) => (
-                    <>
+                    <div key={idx}>
                       <div
                         onClick={() => {
                           item.value !== "san-pham" &&
@@ -219,7 +222,6 @@ const Header = ({ ProductCategory }: any) => {
                           item.value === "san-pham" && setOpenType(!OpenType);
                         }}
                         className="cursor-pointer border-b hover:text-red-500 duration-300 py-2 flex justify-between items-center"
-                        key={idx}
                       >
                         <p>{item.label}</p>
                         {item.value === "san-pham" && <FaAngleDown />}
@@ -284,7 +286,7 @@ const Header = ({ ProductCategory }: any) => {
                           })}
                         </div>
                       )}
-                    </>
+                    </div>
                   ))}
                 </div>
               </div>

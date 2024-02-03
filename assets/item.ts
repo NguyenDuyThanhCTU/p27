@@ -77,7 +77,7 @@ import { GoGitBranch } from "react-icons/go";
 interface IconMappingType {
   [key: string]: IconType;
 }
-export const WebsiteUrl = "https://cokhiphuongtung.com";
+export const WebsiteUrl = "https://taxihaiphong24h.com";
 
 export const IconMapping: IconMappingType = {
   IoFlashOutline: IoFlashOutline,
@@ -220,23 +220,23 @@ export const AdminPageHeaderItems = [
       // },
     ],
   },
-  {
-    label: "Sản Phẩm",
-    value: "danh-sach-san-pham",
-    icon: "GiStarSattelites",
-    children: [
-      {
-        label: "Danh Sách Sản Phẩm",
-        value: "danh-sach-san-pham",
-        icon: "PiCirclesThreePlusDuotone",
-      },
-      {
-        label: "Danh Mục Sản Phẩm",
-        value: "danh-muc-san-pham",
-        icon: "CiBoxList",
-      },
-    ],
-  },
+  // {
+  //   label: "Sản Phẩm",
+  //   value: "danh-sach-san-pham",
+  //   icon: "GiStarSattelites",
+  //   children: [
+  //     {
+  //       label: "Danh Sách Sản Phẩm",
+  //       value: "danh-sach-san-pham",
+  //       icon: "PiCirclesThreePlusDuotone",
+  //     },
+  //     {
+  //       label: "Danh Mục Sản Phẩm",
+  //       value: "danh-muc-san-pham",
+  //       icon: "CiBoxList",
+  //     },
+  //   ],
+  // },
   {
     label: "Bài Viết",
     value: "danh-sach-bai-viet",
@@ -357,13 +357,16 @@ export const AdminPageHeaderItems = [
 
     children: [
       {
-        label: "Đối tác",
+        label: "Dịch Vụ",
         value: "doi-tac",
         icon: "LuGitCompare",
       },
       {
-        label: "Chi Nhánh",
-        value: "chi-nhanh",
+        label: "Dòng xe",
+        icon: "GoGitBranch",
+      },
+      {
+        label: "Bảng giá",
         icon: "GoGitBranch",
       },
     ],
@@ -381,30 +384,21 @@ export const HeaderItems = [
     label: "Giới thiệu",
     value: "gioi-thieu",
   },
-
   {
-    label: "Sản phẩm",
-    value: "san-pham",
+    label: "Dịch vụ Taxi",
+    value: "dich-vu-taxi",
   },
   {
-    label: "Báo giá",
-    value: "bao-gia",
-  },
-  {
-    label: "Dự Án",
-    value: "du-an",
-  },
-  {
-    label: "Liên hệ",
-    value: "lien-he",
+    label: "Cho thuê Taxi",
+    value: "cho-thue-taxi",
   },
   {
     label: "Tin tức",
     value: "tin-tuc",
   },
   {
-    label: "Video",
-    value: "video",
+    label: "Liên hệ",
+    value: "lien-he",
   },
 ];
 
