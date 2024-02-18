@@ -17,13 +17,14 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import HeaderDropDown from "./Items/HeaderDropDown";
 import { useStateProvider } from "@context/StateProvider";
+import slugify from "slugify";
 
-const Header = ({ ProductCategory }: any) => {
+const Header = ({ Car, Services }: any) => {
   const [search, setSearch] = useState("");
   const [searchRs, setSearchRs] = useState([]);
   const [open, setOpen] = useState(false);
   const [OpenSearch, setOpenSearch] = useState(false);
-  const [OpenType, setOpenType] = useState(false);
+  const [OpenType, setOpenType] = useState(0);
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
   const { Config } = useData();
@@ -85,7 +86,8 @@ const Header = ({ ProductCategory }: any) => {
                       className="text-white flex items-center gap-2 text-[14px] uppercase font-bold py-3 px-5  cursor-pointer hover:bg-mainColor duration-300"
                     >
                       <div className="w-full">{item.label}</div>
-                      {item.value === "san-pham" && (
+                      {(item.value === "cho-thue-taxi" ||
+                        item.value === "dich-vu-taxi") && (
                         <>
                           <div className="rotate-0 duration-300 group-hover/main:-rotate-90">
                             <FaAngleDown />
@@ -93,8 +95,12 @@ const Header = ({ ProductCategory }: any) => {
                         </>
                       )}
                     </div>
-                    {item.value === "san-pham" && (
-                      <HeaderDropDown ServiceItem={ProductCategory} />
+                    {item.value === "cho-thue-taxi" ? (
+                      <HeaderDropDown ServiceItem={Car} Type="car" />
+                    ) : (
+                      item.value === "dich-vu-taxi" && (
+                        <HeaderDropDown ServiceItem={Services} />
+                      )
                     )}
                   </div>
                 );
@@ -131,7 +137,7 @@ const Header = ({ ProductCategory }: any) => {
                 width={200}
                 height={200}
                 alt="Logo"
-                className="w-full h-full p-2"
+                className="w-[175px] h-full p-2"
               />
             </div>
             <div
@@ -215,33 +221,40 @@ const Header = ({ ProductCategory }: any) => {
                     <div key={idx}>
                       <div
                         onClick={() => {
-                          item.value !== "san-pham" &&
+                          item.value !== "cho-thue-taxi" &&
+                            item.value !== "dich-vu-taxi" &&
                             HandleNavigate(item.value);
-                          item.value !== "san-pham" && setOpen(false);
+                          item.value !== "cho-thue-taxi" &&
+                            item.value !== "dich-vu-taxi" &&
+                            setOpen(false);
 
-                          item.value === "san-pham" && setOpenType(!OpenType);
+                          (item.value !== "cho-thue-taxi" ||
+                            item.value !== "dich-vu-taxi") &&
+                            setOpenType(idx);
                         }}
                         className="cursor-pointer border-b hover:text-red-500 duration-300 py-2 flex justify-between items-center"
                       >
                         <p>{item.label}</p>
-                        {item.value === "san-pham" && <FaAngleDown />}
+                        {(item.value === "cho-thue-taxi" ||
+                          item.value === "dich-vu-taxi") && <FaAngleDown />}
                       </div>
-                      {item.value === "san-pham" && (
+                      {item.value === "cho-thue-taxi" && (
                         <div
                           className={`${
-                            OpenType ? "h-[430px]" : "h-0"
+                            OpenType === 3 ? "h-[120px]" : "h-0"
                           } overflow-hidden duration-500 ml-4`}
                         >
-                          {ProductTypeItems.map((item: any, idx: number) => {
-                            const sort = ProductCategory?.filter(
-                              (type: any) => type.parent === item.label
-                            );
+                          {Car?.map((item: any, idx: number) => {
+                            const url = slugify(item.title, {
+                              lower: true,
+                              locale: "vi",
+                            });
                             return (
                               <div key={idx}>
                                 <div className="w-full justify-between py-2 border-t items-center cursor-pointer flex">
                                   <div
                                     onClick={() => {
-                                      HandleNavigate(`/san-pham/${item.value}`);
+                                      HandleNavigate(`/thue-xe/${url}`);
                                       setOpen(false);
                                     }}
                                     className={`${
@@ -249,38 +262,41 @@ const Header = ({ ProductCategory }: any) => {
                                       "text-orange-500  "
                                     }`}
                                   >
-                                    {item.label}
+                                    {item.title}
                                   </div>
-                                  {sort?.length > 0 && (
-                                    <div
-                                      className={`${
-                                        openTypeMB === idx + 1 &&
-                                        "text-orange-500 cursor-pointer"
-                                      }`}
-                                      onClick={() => setOpenTypeMB(idx + 1)}
-                                    >
-                                      <IoChevronDownOutline />{" "}
-                                    </div>
-                                  )}
                                 </div>
-                                {sort?.length > 0 && openTypeMB === idx + 1 && (
-                                  <div className="ml-2 flex flex-col">
-                                    {sort?.map((items: any, idx: number) => (
-                                      <div
-                                        onClick={() => {
-                                          HandleNavigate(
-                                            `/san-pham/${item.value}?type=${items.typeUrl}`
-                                          );
-                                          setOpen(false);
-                                        }}
-                                        key={idx}
-                                        className="hover:text-orange-500 cursor-pointer py-1"
-                                      >
-                                        {items.type}
-                                      </div>
-                                    ))}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      {item.value === "dich-vu-taxi" && (
+                        <div
+                          className={`${
+                            OpenType === 2 ? "h-[420px]" : "h-0"
+                          } overflow-hidden duration-500 ml-4`}
+                        >
+                          {Services?.map((item: any, idx: number) => {
+                            const url = slugify(item.title, {
+                              lower: true,
+                              locale: "vi",
+                            });
+                            return (
+                              <div key={idx}>
+                                <div className="w-full justify-between py-2 border-t items-center cursor-pointer flex">
+                                  <div
+                                    onClick={() => {
+                                      HandleNavigate(`/dich-vu/${url}`);
+                                      setOpen(false);
+                                    }}
+                                    className={`${
+                                      openTypeMB === idx + 1 &&
+                                      "text-orange-500  "
+                                    }`}
+                                  >
+                                    {item.title}
                                   </div>
-                                )}
+                                </div>
                               </div>
                             );
                           })}

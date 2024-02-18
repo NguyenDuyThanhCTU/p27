@@ -14,12 +14,12 @@ const PostsRecommend = ({ Type }: any) => {
       <div className="w-full">
         <FacebookProvider appId="781034490143336">
           {" "}
-          <Comments href="https://cokhiphuongtung.com" width={800} />{" "}
+          <Comments href="https://cokhiphuongtung.com" width={1100} />{" "}
         </FacebookProvider>
       </div>
       <div className="mt-4">
         <h2>Bài viết liên quan</h2>
-        <div className="grid grid-cols-3 mt-2 gap-4">
+        <div className="grid p:grid-cols-1 d:grid-cols-3 mt-2 gap-4">
           {Data?.slice(0, 3).map((items: any, idx: number) => (
             <div
               onClick={() => HandleNavigate(`bai-viet/${items.url}`)}

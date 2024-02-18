@@ -21,7 +21,7 @@ const ContactConfig = ({ Data }: any) => {
     },
     {
       label: "Số điện thoại",
-      value: Data?.Hotline,
+      value: Data ? `tel:${Data?.Hotline}` : `tel:0961268996`,
       tooltip: "",
     },
     {

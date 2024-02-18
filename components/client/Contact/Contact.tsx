@@ -184,7 +184,9 @@ const Contact = ({ ContactData }: any) => {
 
                   <h2>Điện thoại:</h2>
                 </div>
-                <p className="font-semibold">{ContactData?.Hotline}</p>
+                <p className="font-semibold">
+                  {ContactData ? ContactData?.Hotline : `0961268996`}
+                </p>
               </div>
               <div>
                 <div className="flex items-center gap-2">

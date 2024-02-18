@@ -3,15 +3,15 @@ import PostCategory from "@components/admin/Posts/Category";
 import Posts from "@components/admin/Posts/Posts";
 import PostPolicy from "@components/admin/Posts/Policy";
 import PostIntroductory from "@components/admin/Posts/Introductory";
-import ProductCategory from "@components/admin/Product/ProductCategory";
-import AdminProductList from "@components/admin/Product/ProductList";
+
 import { find, findById, findOne } from "@lib/api";
 import { Metadata } from "next";
 import AdminPage from "@components/admin/AdminPage";
 import SocialMedia from "@components/admin/Comunity/SocialMedia/SocialMedia";
 import Slide from "@components/admin/Comunity/Slide/Slide";
-import Plugins from "@components/admin/Plugins/Plugins";
 import Collection from "@components/admin/Comunity/Collection/Collection";
+import Car from "@components/admin/Plugins/Car";
+import Services from "@components/admin/Plugins/Services";
 
 export const metadata: Metadata = {
   title: "Công ty ứng dụng truyền thông ADS",
@@ -36,15 +36,7 @@ const AdminHomePage = async ({
       const ConfigData = await find("Config");
       componentToRender = <ConfigPage Data={ConfigData} />;
       break;
-    case "danh-sach-san-pham":
-      const ProductCategoryTag = await find("ProductCategory");
 
-      componentToRender = <AdminProductList Category={ProductCategoryTag} />;
-      break;
-    case "danh-muc-san-pham":
-      const Type = await find("ProductCategory");
-      componentToRender = <ProductCategory Data={Type} />;
-      break;
     case "danh-sach-bai-viet":
       const CategoryData = await find("PostCategory");
 
@@ -73,13 +65,21 @@ const AdminHomePage = async ({
       const SocialMediaData = await findById("Config", "SocialMedia");
       componentToRender = <SocialMedia Data={SocialMediaData} />;
       break;
-    case "doi-tac":
-      const PartnerData = await find("Partner");
-      componentToRender = <Plugins Data={PartnerData} />;
-      break;
+
     case "bo-suu-tap":
       const CollectionData = await find("Collection");
       componentToRender = <Collection Data={CollectionData} />;
+      break;
+
+    case "dong-xe":
+      const CarData = await find("Car");
+
+      componentToRender = <Car Data={CarData} />;
+      break;
+    case "dich-vu":
+      const ServiceData = await find("Services");
+
+      componentToRender = <Services Data={ServiceData} />;
       break;
 
     default:

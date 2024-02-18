@@ -352,21 +352,18 @@ export const AdminPageHeaderItems = [
   // },
   {
     label: "Tiện Ích",
-    value: "tien-ich",
+    value: "dich-vu",
     icon: "BiHive",
 
     children: [
       {
         label: "Dịch Vụ",
-        value: "doi-tac",
+        value: "dich-vu",
         icon: "LuGitCompare",
       },
       {
         label: "Dòng xe",
-        icon: "GoGitBranch",
-      },
-      {
-        label: "Bảng giá",
+        value: "dong-xe",
         icon: "GoGitBranch",
       },
     ],

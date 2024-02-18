@@ -80,7 +80,7 @@ const InputForm = ({
               <div className="px-4 py-1   bg-white rounded-lg w-full col-span-6">
                 <TextEditor
                   initialValue={
-                    FormData[field] ? FormData[field] : "<p>Content...</p>"
+                    FormData ? FormData[field] : "<p>Content...</p>"
                   }
                   onChange={setFormData}
                   Form={FormData}

@@ -5,13 +5,12 @@ import React, { useEffect, useState } from "react";
 import { PiCardsLight } from "react-icons/pi";
 
 import { useStateProvider } from "@context/StateProvider";
-import Create from "./Partner/Create";
 import CRUDButton from "@components/items/server-items/CRUDButton";
 import { convertDate } from "@components/items/server-items/Handle";
 // import Update from "./Partner/Update";
 import { useRouter } from "next/navigation";
 import { deleteOne } from "@lib/api";
-import Update from "./Partner/Update";
+import Create from "./Services/Create";
 
 interface PartnerProps {
   id: string;
@@ -21,7 +20,7 @@ interface PartnerProps {
   createdAt: any;
 }
 
-const Plugins = ({ Data }: any) => {
+const Services = ({ Data }: any) => {
   const [isOpenAdd, setIsOpenAdd] = useState<boolean>(false);
   const [SelectedProductData, setSelectedProductData] = useState<any>();
   const [isOpenUpdateModel, setIsOpenUpdateModel] = useState<boolean>(false);
@@ -36,7 +35,7 @@ const Plugins = ({ Data }: any) => {
   };
 
   const HandleDelete = async (id: string) => {
-    deleteOne("Partner", id).then(() => {
+    deleteOne("Services", id).then(() => {
       setIsOpenHandleModel(false);
       router.refresh();
     });
@@ -52,14 +51,14 @@ const Plugins = ({ Data }: any) => {
         <div className="flex justify-between">
           <div className="flex items-center gap-5">
             <div>
-              <h3 className="text-[30px] font-bold">Đối tác</h3>
-              <p className="font-light">Danh sách đối tác</p>
+              <h3 className="text-[30px] font-bold">Dịch Vụ</h3>
+              <p className="font-light">Danh sách Dịch Vụ</p>
             </div>
             <div>
               <CRUDButton
                 Clicked={setIsOpenAdd}
                 Label="Thêm"
-                value="Đối tác"
+                value="Dịch Vụ"
                 Style="hover:bg-emerald-900 bg-emerald-700"
               />
             </div>
@@ -67,18 +66,18 @@ const Plugins = ({ Data }: any) => {
           <div className="flex items-center gap-4 text-[14px] ">
             <div className="flex items-center gap-1">
               <PiCardsLight />
-              <p>{Data?.length} đối tác</p>
+              <p>{Data?.length} Dịch Vụ</p>
             </div>
           </div>
         </div>
         <div className="mt-5 text-black">
           <div className="grid grid-cols-8 border-b-2 border-black py-3">
-            {["STT", "Tên Đối tác", "Logo", "Liên Kết", "Thời gian"].map(
+            {["STT", "Tên Dịch Vụ", "Logo", "Liên Kết", "Thời gian"].map(
               (item, idx) => (
                 <div
                   key={idx}
                   className={`${
-                    item === "Tên Đối tác" || item === "Liên Kết"
+                    item === "Tên Dịch Vụ" || item === "Liên Kết"
                       ? "col-span-2 justify-start"
                       : "justify-center col-span-1"
                   }
@@ -146,13 +145,13 @@ const Plugins = ({ Data }: any) => {
                 <CRUDButton
                   Clicked={() => setIsOpenUpdateModel(true)}
                   Label="Chỉnh Sửa"
-                  value="Đối tác"
+                  value="Dịch Vụ"
                   Style="hover:bg-green-900 bg-green-700"
                 />
                 <CRUDButton
                   Clicked={() => HandleDelete(SelectedProductData?.id)}
                   Label="Xóa"
-                  value="Đối tác"
+                  value="Dịch Vụ"
                   Style="hover:bg-green-900 bg-green-700"
                 />
               </div>
@@ -162,7 +161,7 @@ const Plugins = ({ Data }: any) => {
       </>
 
       <Modal
-        title="Thêm Đối Tác"
+        title="Thêm Dịch Vụ"
         footer={null}
         open={isOpenAdd}
         width={700}
@@ -182,10 +181,14 @@ const Plugins = ({ Data }: any) => {
         afterClose={() => setFormData({})}
         onCancel={() => setIsOpenUpdateModel(false)}
       >
-        <Update OpenUpdate={setIsOpenUpdateModel} />
+        <Create
+          OpenCreate={setIsOpenUpdateModel}
+          Type="update"
+          OpenHandle={setIsOpenHandleModel}
+        />
       </Modal>
     </div>
   );
 };
 
-export default Plugins;
+export default Services;

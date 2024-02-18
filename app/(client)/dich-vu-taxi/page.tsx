@@ -8,12 +8,11 @@ import ShortIntro from "@components/client/Home/ShortIntro";
 import { find } from "@lib/api";
 import { Metadata } from "next";
 import React from "react";
-
 export async function generateMetadata(): Promise<Metadata> {
   const metaTag = await find("Config");
   const metaDataTag = metaTag.find((item: any) => item.id == "SEOconfig");
   return {
-    title: `Trang Chủ - ${metaDataTag?.Title}`,
+    title: `Dịch Vụ Taxi - ${metaDataTag?.Title}`,
     description: metaDataTag?.Description,
     keywords: metaDataTag?.Keywords,
   };
